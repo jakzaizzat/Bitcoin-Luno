@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+	<meta charset="utf-8">
+	<title>Luno Bitcoin Calculater 👾</title>
+	<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="app/script.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-controller="myAppController" class="bg-blue-lightest">
+	<div class="container align-middle mx-auto pt-8">
+		<h1 class="text-center text-6xl font-sans font-bold">How much do you invested in Luno? 👾</h1>
+
+		<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-8">
+			<div class="mb-4">
+				<label class="block text-grey-darker text-sm font-bold mb-2" for="username">
+					How much bitcoin do you have? (BTC)
+				</label>
+				<input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="btc" type="number" ng-model="userBtc">
+			</div>
+			<div class="mb-6">
+				<label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+					How much money have you invested? (MYR)
+				</label>
+				<input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3" type="number" ng-model="userMyr"
+				  id="myr">
+			</div>
+			<div class="flex items-center justify-between">
+				<button class="bg-blue hover:bg-blue-dark rounded-full text-white font-bold py-2 px-4 rounded" ng-click="calculateProfit()"
+				  ng-disabled="!userBtc && !userMyr">
+					Calculate Profit 🤑
+				</button>
+			</div>
+		</div>
+
+
+		<div class="flex mb-4" ng-if="showCard">
+			<div class="w-1/2 sm:w-full md:w-full lg:w-1/2 h-12">
+				<div class="max-w-md w-full lg:flex pr-2">
+					<div class="w-full border-r border-b border-l border-grey-light lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+						<p>Your profit is: </p>
+						<div>
+							<div class="text-black text-center font-bold text-xl mb-2">RM
+								<span class="text-5xl">{{ userProfit | number : 2 }}</span>
+							</div>
+							<p class="text-grey-darker text-base"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="w-1/2 sm:w-full md:w-full lg:w-1/2 h-12">
+				<div class="max-w-md w-full lg:flex pl-2">
+					<div class="w-full border-r border-b border-l border-grey-light lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+						<p>Your bitcoin worth: </p>
+						<div>
+							<div class="text-black text-center font-bold text-xl mb-2">RM
+								<span class="text-5xl">{{userAsset | number : 2}}</span>
+							</div>
+							<p class="text-grey-darker text-base"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

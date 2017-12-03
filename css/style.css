@@ -1,0 +1,8 @@
+h1 {
+  font-size: 4rem; }
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 800px; } }
+
+/*# sourceMappingURL=style.css.map */
