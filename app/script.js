@@ -3,8 +3,7 @@ angular.module('myApp', [])
 
         $scope.calculateProfit = function () {
             $scope.baseUrl2 = 'https://angularjs.org/greet.php';
-            $scope.baseUrl = 'https://api.mybitx.com/api/1/ticker';
-
+            $scope.baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.mybitx.com/api/1/ticker';
 
             $http({
                     method: 'GET',
@@ -17,9 +16,9 @@ angular.module('myApp', [])
                     }
                 })
                 .then(function (res) {
-                    console.log(res.json());
                     $window.localStorage.setItem('btc', $scope.userBtc);
                     $window.localStorage.setItem('myr', $scope.userMyr);
+                    $scope.currencyBTC = res.data.ask;
                     $scope.userAsset = $scope.userBtc * res.data.ask;
                     $scope.userProfit = $scope.userAsset - $scope.userMyr;
                     $scope.showCard = true;
