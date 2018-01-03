@@ -1,8 +1,7 @@
 angular.module('myApp', [])
-    .controller('myAppController', function ($scope, $http, $window) {
+    .controller('myAppController', function($scope, $http, $window) {
 
-        $scope.calculateProfit = function () {
-            $scope.baseUrl2 = 'https://angularjs.org/greet.php';
+        $scope.calculateProfit = function() {
             $scope.baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.mybitx.com/api/1/ticker';
 
             $http({
@@ -15,15 +14,18 @@ angular.module('myApp', [])
                         pair: 'XBTMYR'
                     }
                 })
-                .then(function (res) {
+                .then(function(res) {
                     $window.localStorage.setItem('btc', $scope.userBtc);
                     $window.localStorage.setItem('myr', $scope.userMyr);
                     $scope.currencyBTC = res.data.ask;
                     $scope.userAsset = $scope.userBtc * res.data.ask;
                     $scope.userProfit = $scope.userAsset - $scope.userMyr;
                     $scope.showCard = true;
+
+                    $scope.margin = 100 * (($scope.userAsset - $scope.userMyr) / $scope.userAsset);
+                    console.log($scope.margin);
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     console.log(err);
                 });
         }
